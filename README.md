@@ -11,11 +11,11 @@ Es un enfoque de trabajo que propone al Sistema de Control de Versiones (VCS) Gi
 
 ## Objetivos de aprendizaje
 
-* Tomar contacto con tecnologías clave:
-** Kubernetes container orchestration engine
-** Docker container engine
-** ArgoCD continuous deployment tool
-** Github Actions pipelines
+Tomar contacto con tecnologías clave:
+* Kubernetes container orchestration engine
+* Docker container engine
+* ArgoCD continuous deployment tool
+* Github Actions pipelines
 
 ## Manos a la obra!
 
