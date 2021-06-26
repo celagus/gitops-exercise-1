@@ -9,8 +9,17 @@ Es un enfoque de trabajo que propone al Sistema de Control de Versiones (VCS) Gi
 ## Requisitos
 * Tener instalado y corriendo un cluster local de Kubernetes - [Guía de instalación minikube](https://minikube.sigs.k8s.io/docs/start/) o [Guía de instalación Docker for Desktop](https://www.docker.com/products/docker-desktop) y [activación de K8s en Docker for Desktop](https://docs.docker.com/desktop/kubernetes/)  (opción recomendada).
 
+## Objetivos de aprendizaje
 
-## Instalación ArgoCD
+* Tomar contacto con tecnologías clave:
+** Kubernetes container orchestration engine
+** Docker container engine
+** ArgoCD continuous deployment tool
+** Github Actions pipelines
+
+## Manos a la obra!
+
+### Instalación ArgoCD
 
 1. Instalar ArgoCD en Kubernetes
 ```
@@ -48,7 +57,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ![Image](img/argocd-login.png)
 
 
-## Configuración ArgoCD
+### Configuración ArgoCD
 
 1. En la consola de administración dirigirse a "New App"
 ![Image](img/argocd-new-app.png)
@@ -84,7 +93,7 @@ Deberías obtener un resultado similar al siguiente:
 
 Nótese que en la carpeta [k8s](https://github.com/celagus/random-passwd-api/tree/main/k8s) del proyecto se encuentran los manifiestos que le permiten a Argo entender qué implementar y de qué manera. Si prestan atención a [esta línea](https://github.com/celagus/random-passwd-api/blob/main/k8s/deployment.yml#L18) del file *deployment.yml*, el manifiesto indica que la imagen de contenedor a utilizar es "random-passwd-api" del desarrollador "celagus" en la registry oficial de Docker (Docker Hub). Si se fijan en el file [.github/workflows/pipeline.yml](https://github.com/celagus/random-passwd-api/blob/main/.github/workflows/pipeline.yml) del proyecto verán que hay definido un pipeline de GitHub Actions para generar una nueva imagen del proyecto y subirla a la registry cada vez que se "pushea" un nuevo commit en el repo. En el siguiente ejercicio profundizaremos sobre cómo sacar provecho de la funcionalidad Github Actions para crear pipelines.
 
-## Destruir toda la implementación anterior
+### Destruir toda la implementación anterior
 
 ```
 kubectl delete ns argocd
