@@ -56,7 +56,6 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 5. Ingresar como admin a ArgoCD a través de un browser con la URL "https:/127.0.0.1:8081" utilizando el usuario "admin" junto con la secret obtenida en el paso anterior
 ![Image](img/argocd-login.png)
 
-
 ### Configuración ArgoCD
 
 1. En la consola de administración dirigirse a "New App"
