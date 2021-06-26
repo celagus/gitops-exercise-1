@@ -56,7 +56,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 5. Ingresar como admin a ArgoCD a través de un browser con la URL "https:/127.0.0.1:8081" utilizando el usuario "admin" junto con la secret obtenida en el paso anterior
 ![Image](img/argocd-login.png)
 
-### Configuración ArgoCD
+### Configuración ArgoCD
 
 1. En la consola de administración dirigirse a "New App"
 ![Image](img/argocd-new-app.png)
@@ -92,7 +92,7 @@ Deberías obtener un resultado similar al siguiente:
 
 Nótese que en la carpeta [k8s](https://github.com/celagus/random-passwd-api/tree/main/k8s) del proyecto se encuentran los manifiestos que le permiten a Argo entender qué implementar y de qué manera. Si prestan atención a [esta línea](https://github.com/celagus/random-passwd-api/blob/main/k8s/deployment.yml#L18) del file *deployment.yml*, el manifiesto indica que la imagen de contenedor a utilizar es "random-passwd-api" del desarrollador "celagus" en la registry oficial de Docker (Docker Hub). Si se fijan en el file [.github/workflows/pipeline.yml](https://github.com/celagus/random-passwd-api/blob/main/.github/workflows/pipeline.yml) del proyecto verán que hay definido un pipeline de GitHub Actions para generar una nueva imagen del proyecto y subirla a la registry cada vez que se "pushea" un nuevo commit en el repo. En el siguiente ejercicio profundizaremos sobre cómo sacar provecho de la funcionalidad Github Actions para crear pipelines.
 
-### Destruir toda la implementación anterior
+## Destruir toda la implementación anterior
 
 ```
 kubectl delete ns argocd
