@@ -1,10 +1,13 @@
 # Ejercicio 3: Basic GitOps CD Pipeline
 
 ## Intro
-Bienvenidxs! Este es el tercer ejercicio del módulo de DevSecOps de Ekoparty Hackademy. En los ejercicios anteriores aprendieron a usar Git de forma básica. En esta oportunidad abordaremos el enfoque de trabajo GitOps utilizando herramientas de Continuous Deployment (CD) e Infrastructure-as-Code (IaC)
+Bienvenidxs! Este es el tercer ejercicio del módulo de DevSecOps de Ekoparty Hackademy. En los ejercicios anteriores aprendieron a usar Git de forma básica. En esta oportunidad abordaremos el enfoque de trabajo GitOps utilizando herramientas de Continuous Deployment (CD) e Infrastructure-as-Code (IaC).
+
+### ¿Qué es GitOps?
+Es un enfoque de trabajo que propone al Sistema de Control de Versiones (VCS) Git como principal fuente de confianza para versionar y getionar infraestructura como código (IaC) y aplicaciones. Los cambios se introducen a través de PR/MR y los rollouts/rollbacks se producen en forma automática a través de pipelines declarativos.
 
 ## Requisitos
-* Tener instalado y corriendo un cluster local de Kubernetes - [Guía de instalación minikube](https://minikube.sigs.k8s.io/docs/start/) o [Guía de instalación Docker for Desktop](https://www.docker.com/products/docker-desktop) y [activación de K8s en Docker for Desktop](https://docs.docker.com/desktop/kubernetes/)  (opción recomendada)
+* Tener instalado y corriendo un cluster local de Kubernetes - [Guía de instalación minikube](https://minikube.sigs.k8s.io/docs/start/) o [Guía de instalación Docker for Desktop](https://www.docker.com/products/docker-desktop) y [activación de K8s en Docker for Desktop](https://docs.docker.com/desktop/kubernetes/)  (opción recomendada).
 
 
 ## Instalación ArgoCD
@@ -79,6 +82,7 @@ http://127.0.0.1:8082/generate-password/?lowercase=4&uppercase=4&digits=2&length
 Deberías obtener un resultado similar al siguiente:
 ![Image](img/argocd-check-api.png)
 
+Nótese que en la carpeta [k8s](https://github.com/celagus/random-passwd-api/tree/main/k8s) del proyecto se encuentran los manifiestos que le permiten a Argo entender qué implementar y de qué manera. Si prestan atención a [esta línea](https://github.com/celagus/random-passwd-api/blob/main/k8s/deployment.yml#L18) del file *deployment.yml*, el manifiesto indica que la imagen de contenedor a utilizar es "random-passwd-api" del desarrollador "celagus" en la registry oficial de Docker (Docker Hub). Si se fijan en el file [.github/workflows/pipeline.yml](https://github.com/celagus/random-passwd-api/blob/main/.github/workflows/pipeline.yml) del proyecto verán que hay definido un pipeline de GitHub Actions para generar una nueva imagen del proyecto y subirla a la registry cada vez que se "pushea" un nuevo commit en el repo. En el siguiente ejercicio profundizaremos sobre cómo sacar provecho de la funcionalidad Github Actions para crear pipelines.
 
 ## Destruir toda la implementación anterior
 
@@ -86,5 +90,3 @@ Deberías obtener un resultado similar al siguiente:
 kubectl delete ns argocd
 kubectl delete ns random-passwd
 ```
-
-
